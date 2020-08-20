@@ -1,20 +1,24 @@
 import os
-import sys
+import datetime
 import argparse
 
 
 class PSListCopy:
-    def __init__(self, list_file, output, encoding):
+    def __init__(self, list_file, output, no_copy_flag, encoding='utf-8'):
         self.output = output
         self.encoding = encoding
         self.list_file = list_file
+        self.no_copy_flag = no_copy_flag
     
     def run(self):
         paths = "\n".join(
             [path for path in self.load_list()]
         )
         script_data = f"<###\n{paths}\n###>{self._get_ps_script()}"
+        if not self.no_copy_flag:
+            script_data += self._copy_files()
         self._save_ps_file(script_data)
+           
 
     def load_list(self):
         with open(self.list_file, 'r', encoding=self.encoding) as f:
@@ -22,26 +26,27 @@ class PSListCopy:
                 yield path.strip()
 
     def _save_ps_file(self, script):
-        with open(self.output + os.sep + "PSListCopy.ps1", "w", encoding=self.encoding) as f:
+        with open(".\\PSListCopyRun.ps1", "w", encoding=self.encoding) as f:
             f.write(script)
 
     def _copy_files(self):
-        xcopy_cmds = []
+        xcopy_cmds = ["\n"]
         for path in self.load_list():
             trc_drive_letter = path.replace(':', '_DRIVE')
             dst_path = self.output + os.sep + trc_drive_letter
-            command = f"xcopy /k/h/o/x/y \"{path}\" \"{dst_path}\""
+            command = f"xcopy /k/h/o/x/y \"{path}\" \"{dst_path}*\""
             xcopy_cmds.append(command)
+        return "\n".join(xcopy_cmds)
 
     def _get_ps_script(self):
         # This is a Powershell script to get information about files
-        return """
+        script = """
             $inc = 0;
             $csv_list = @(
-                \'\"No\",\"Path\",\"Name\",\"Extension\",\"Size\",\"Type\",\"Owner\",\"Group\",\"Hidden\",\"System\",\"Encrypted\",\"Compressed\",\"Archive\",\"Readable\",\"Writable\",\"Access Mask\",\"Last Modified Time\",\"Last Accessed Time\",\"Created Time\",\"Manufacturer\",\"Version\"\'
+                \'\"No\",\"Full Path\",\"Name\",\"Extension\",\"Type\",\"Size\",\"Last Modified Time\",\"Last Accessed Time\",\"Created Time\",\"Owner\",\"Group\",\"Hidden\",\"System\",\"Encrypted\",\"Compressed\",\"Archive\",\"Readable\",\"Writable\",\"Access Mask\",\"Manufacturer\",\"Version\"\'
             );
             $data = [regex]::match(
-                        (Get-Content .\\PSListCopy.ps1 -Encoding UTF8 -Raw), 
+                        (Get-Content $PSCommandPath -Encoding UTF8 -Raw), 
                         \'(?ms)<\#{3}\W(.+?\W)#{3}\>\'
                     )[0].Groups[1].Value      
             foreach(
@@ -78,7 +83,7 @@ class PSListCopy:
                         $_dt = [Management.ManagementDateTimeConverter]::ToDateTime($o)
                         $_dt = \'\"\' + $_dt.ToString(\'yyyy-MM-dd hh:mm:ss\') + \'\"\'
                     } catch{
-                        $_dt = \'\"\' + $_.Exception.GetType().FullName.toString() + \'\"\'
+                        $_dt = \'\"Unknown\"\'
                     } finally{
                         $mac_datetimes += @($_dt);
                     }
@@ -88,8 +93,11 @@ class PSListCopy:
                             + $fn + \',\' `
                             + $f.filename + \'.\' + $f.extension + \',\' `
                             + $f.extension + \',\' `
-                            + $f.filesize + \',\' `
                             + $f.filetype + \',\' `
+                            + $f.filesize + \',\' `
+                            + $mac_datetimes[1] + \',\' `
+                            + $mac_datetimes[2] + \',\' `
+                            + $mac_datetimes[3] + \',\' `
                             + $owner + \',\' `
                             + $group + \',\' `
                             + $f.hidden + \',\' `
@@ -100,16 +108,14 @@ class PSListCopy:
                             + $f.readable + \',\' `
                             + $f.writeable + \',\' `
                             + $f.accessmask + \',\' `
-                            + $mac_datetimes[1] + \',\' `
-                            + $mac_datetimes[2] + \',\' `
-                            + $mac_datetimes[3] + \',\' `
                             + $f.manufacturer + \',\' `
                             + $f.version
                 $csv_list += @($out)
             }
             $csv_data = $csv_list -join \"`n\"
-            Out-File -FilePath .\wsh_gather.csv -InputObject $csv_data -Encoding \'UTF8\'
         """
+        script += f"Out-File -FilePath .\{self.output}\PSListCopy_Output.csv -InputObject $csv_data -Encoding \'UTF8\'"
+        return script
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -127,21 +133,22 @@ if __name__ == "__main__":
     parser.add_argument(
         '-o', '--output_path', 
         help='Path of output ps1 file', 
-        default=".\\",
+        default=f".\\PSListCopy_{int(datetime.datetime.now().timestamp())}\\",
         dest="out_path"
     )
     parser.add_argument(
-        '-e', '--encoding', 
-        help='List file encoding (Default: UTF-8)', 
-        default="utf-8",
-        dest="list_encode"
+        '-n', '--no_copy', 
+        help='Saves only metadata about the file to csv(It does not acquisition files).', 
+        default=False,
+        action='store_true',
+        dest="no_copy"
     )
     args = parser.parse_args()
     
     pslistcopy = PSListCopy(
         list_file=args.list_file_path,
         output=args.out_path,
-        encoding=args.list_encode
+        no_copy_flag=args.no_copy
     )
     pslistcopy.run()
-    print("Done")
+    print("[+] Done.")
