@@ -41,7 +41,7 @@ class PSListCopy:
                 \'\"No\",\"Path\",\"Name\",\"Extension\",\"Size\",\"Type\",\"Owner\",\"Group\",\"Hidden\",\"System\",\"Encrypted\",\"Compressed\",\"Archive\",\"Readable\",\"Writable\",\"Access Mask\",\"Last Modified Time\",\"Last Accessed Time\",\"Created Time\",\"Manufacturer\",\"Version\"\'
             );
             $data = [regex]::match(
-                        (Get-Content .\test.ps1 -Encoding UTF8 -Raw), 
+                        (Get-Content .\\PSListCopy.ps1 -Encoding UTF8 -Raw), 
                         \'(?ms)<\#{3}\W(.+?\W)#{3}\>\'
                     )[0].Groups[1].Value      
             foreach(
@@ -51,7 +51,7 @@ class PSListCopy:
                         )
             ){
                 $inc += 1;
-                $f = $fn.Replace(\'\\', \'\\\');
+                $f = $fn.Replace(\'\\\', \'\\\\\');
                 try{
                     $owner = \'\"\' + (get-acl $f).Owner + \'\"\'
                 } catch{

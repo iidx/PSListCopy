@@ -1,0 +1,40 @@
+C:\Windows\System32\convertvhd.exe
+C:\Windows\System32\coredpussvr.exe
+C:\Windows\System32\CredentialEnrollmentManager.exe
+C:\Windows\System32\CredentialUIBroker.exe
+C:\Windows\System32\credwiz.exe
+C:\Windows\System32\cscript.exe
+C:\Windows\System32\WUDFCompanionHost.exe
+C:\Windows\System32\WUDFHost.exe
+C:\Windows\System32\wusa.exe
+C:\Windows\System32\WWAHost.exe
+C:\Windows\System32\XblGameSaveTask.exe
+C:\Windows\System32\xcopy.exe
+C:\Windows\System32\oobe\UserOOBEBroker.exe
+C:\Windows\System32\oobe\windeploy.exe
+C:\Windows\System32\OpenSSH\scp.exe
+C:\Windows\System32\OpenSSH\sftp.exe
+C:\Windows\System32\OpenSSH\ssh-add.exe
+C:\Windows\System32\OpenSSH\ssh-agent.exe
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-system-di..s-diagnosticinvoker_31bf3856ad364e35_10.0.18362.836_none_4fc13d40f9fa0a82\f\diagnosticinvoker.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-system-di..s-diagnosticinvoker_31bf3856ad364e35_10.0.18362.836_none_4fc13d40f9fa0a82\r\diagnosticinvoker.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..adjustment.appxmain_31bf3856ad364e35_10.0.18362.752_none_b2ada400313b104a\f\components.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..adjustment.appxmain_31bf3856ad364e35_10.0.18362.752_none_b2ada400313b104a\f\desktoplearning.components.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..adjustment.appxmain_31bf3856ad364e35_10.0.18362.752_none_b2ada400313b104a\f\models.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..adjustment.appxmain_31bf3856ad364e35_10.0.18362.752_none_b2ada400313b104a\f\roomadjustment.components.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..adjustment.appxmain_31bf3856ad364e35_10.0.18362.752_none_b2ada400313b104a\r\components.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..adjustment.appxmain_31bf3856ad364e35_10.0.18362.752_none_b2ada400313b104a\r\desktoplearning.components.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..adjustment.appxmain_31bf3856ad364e35_10.0.18362.752_none_b2ada400313b104a\r\models.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..adjustment.appxmain_31bf3856ad364e35_10.0.18362.752_none_b2ada400313b104a\r\roomadjustment.components.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..anagement-migration_31bf3856ad364e35_10.0.18362.449_none_c9738b431cd37e51\f\appmanmigrationplugin.dll
+C:\Windows\servicing\LCU\Package_for_RollupFix~31bf3856ad364e35~amd64~~18362.900.1.8\amd64_microsoft-windows-a..anagement-migration_31bf3856ad364e35_10.0.18362.449_none_c9738b431cd37e51\r\appmanmigrationplugin.dll
+C:\ProgramData\Microsoft\Network\Downloader\edb.log
+C:\ProgramData\Microsoft\Network\Downloader\edb00010.log
+C:\ProgramData\Microsoft\Network\Downloader\edbtmp.log
+C:\ProgramData\Microsoft\SmsRouter\MessageStore\edb.log
+C:\ProgramData\Microsoft\SmsRouter\MessageStore\edb00004.log
+C:\ProgramData\Microsoft\SmsRouter\MessageStore\edb00005.log
+C:\ProgramData\Microsoft\SmsRouter\MessageStore\edbtmp.log
+C:\ProgramData\Microsoft\Windows Defender\Scans\History\Service\Detections.log
+C:\ProgramData\Microsoft\Windows Defender\Scans\History\Service\History.Log
+C:\ProgramData\Microsoft\Windows Defender\Scans\History\Service\Unknown.Log
