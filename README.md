@@ -1,5 +1,7 @@
 # PSListCopy
-File and file meta information acquisition using PowerShell in Live Response environment.
+- File and file meta information acquisition using PowerShell in Live Response environment.
+
+
 ![](/img/pslistcopy.png)
 
 ## Requirements
