@@ -114,6 +114,7 @@ class PSListCopy:
             }
             $csv_data = $csv_list -join \"`n\"
         """
+        script += f"\nNew-Item -ItemType directory -Path .\{self.output}\n"
         script += f"Out-File -FilePath .\{self.output}\PSListCopy_Output.csv -InputObject $csv_data -Encoding \'UTF8\'"
         return script
 
